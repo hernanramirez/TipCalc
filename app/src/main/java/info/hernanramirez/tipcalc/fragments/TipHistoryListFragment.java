@@ -25,7 +25,7 @@ import info.hernanramirez.tipcalc.models.TipRecord;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TipHistoryListFragment extends Fragment implements TipHistoryListFragmentListener {
+public class TipHistoryListFragment extends Fragment implements TipHistoryListFragmentListener, OnItemClickListener {
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
@@ -51,7 +51,7 @@ public class TipHistoryListFragment extends Fragment implements TipHistoryListFr
 
     private void initAdapter() {
         if (adapter == null){
-            adapter = new TipAdaper(getActivity().getApplicationContext(), new ArrayList<TipRecord>() );
+            adapter = new TipAdaper(getActivity().getApplicationContext(), this);
         }
     }
 
@@ -71,5 +71,10 @@ public class TipHistoryListFragment extends Fragment implements TipHistoryListFr
     public void clearList() {
         adapter.clear();
 
+    }
+
+    @Override
+    public void onItemClick(TipRecord tipRecord) {
+        Toast.makeText(getActivity(),tipRecord.getDateFormatted(), Toast.LENGTH_LONG).show();
     }
 }
