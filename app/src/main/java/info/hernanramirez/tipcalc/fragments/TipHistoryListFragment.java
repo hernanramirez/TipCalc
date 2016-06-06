@@ -17,6 +17,7 @@ import javax.xml.validation.TypeInfoProvider;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import info.hernanramirez.tipcalc.R;
+import info.hernanramirez.tipcalc.adapters.OnItemClickListener;
 import info.hernanramirez.tipcalc.adapters.TipAdaper;
 import info.hernanramirez.tipcalc.models.TipRecord;
 
@@ -50,7 +51,7 @@ public class TipHistoryListFragment extends Fragment implements TipHistoryListFr
 
     private void initAdapter() {
         if (adapter == null){
-            adapter = new TipAdaper(getActivity().getApplicationContext(), new ArrayList<TipRecord>());
+            adapter = new TipAdaper(getActivity().getApplicationContext(), new ArrayList<TipRecord>() );
         }
     }
 
@@ -62,11 +63,13 @@ public class TipHistoryListFragment extends Fragment implements TipHistoryListFr
 
     @Override
     public void addToList(TipRecord record) {
+        adapter.add(record);
 
     }
 
     @Override
     public void clearList() {
+        adapter.clear();
 
     }
 }
