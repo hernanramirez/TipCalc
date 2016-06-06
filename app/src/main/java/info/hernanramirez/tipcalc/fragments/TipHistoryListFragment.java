@@ -1,6 +1,7 @@
 package info.hernanramirez.tipcalc.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,6 +18,7 @@ import javax.xml.validation.TypeInfoProvider;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import info.hernanramirez.tipcalc.R;
+import info.hernanramirez.tipcalc.activities.TipDetailActivity;
 import info.hernanramirez.tipcalc.adapters.OnItemClickListener;
 import info.hernanramirez.tipcalc.adapters.TipAdaper;
 import info.hernanramirez.tipcalc.models.TipRecord;
@@ -75,6 +77,10 @@ public class TipHistoryListFragment extends Fragment implements TipHistoryListFr
 
     @Override
     public void onItemClick(TipRecord tipRecord) {
-        Toast.makeText(getActivity(),tipRecord.getDateFormatted(), Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(getActivity(), TipDetailActivity.class);
+        intent.putExtra(TipDetailActivity.TIP_KEY, tipRecord.getTip());
+        intent.putExtra(TipDetailActivity.BILL_TOTAL_KEY, tipRecord.getBill());
+        intent.putExtra(TipDetailActivity.DATE_KEY, tipRecord.getDateFormatted());
+        startActivity(intent);
     }
 }
